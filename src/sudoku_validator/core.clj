@@ -22,10 +22,10 @@
 
 (defn valid-sudoku?
   [matrix]
-  (and (every? identity
-               ;; rows
-               (concat (map valid-seq? matrix)
-                     ;; columns
-                     (map valid-seq? (transpose-sudoku matrix))
-                     ;; squares
-                     (map valid-seq? (matrix-to-squares matrix))))))
+  (every? identity
+          ;; rows
+          (concat (map valid-seq? matrix)
+                  ;; columns
+                  (map valid-seq? (transpose-sudoku matrix))
+                  ;; squares
+                  (map valid-seq? (matrix-to-squares matrix)))))
