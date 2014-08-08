@@ -7,18 +7,18 @@
   [line]
   (empty? (difference valid-set line)))
 
-(defn transpose-sudoku
+(defn- transpose-sudoku
   [sudoku-matrix]
   (apply mapv vector sudoku-matrix))
 
-(defn matrix-to-squares
+(defn- matrix-to-squares
   [sudoku-matrix]
   (loop [i 0 squares []]
     (if-not (< i 9)
       squares
       (recur (+ i 3)
              (into squares
-                   (partition 9 (apply concat (map #(take 3 (drop 0 %)) sudoku-matrix))))))))
+                   (partition 9 (apply concat (map #(take 3 (drop i %)) sudoku-matrix))))))))
 
 (defn valid-sudoku?
   [matrix]
